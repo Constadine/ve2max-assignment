@@ -1,0 +1,19 @@
+{
+    "current": 2.53,
+    "voltage": 222.2,
+    "reactive_power": 159.09,
+    "apparent_power": 309.17,
+    "power_factor": 0.8575,
+    "temp": 37,
+    "feels_like": 30,
+    "temp_min": 20,
+    "temp_max": 40,
+    "pressure": 1013,
+    "humidity": 39,
+    "speed": 0.0,
+    "deg": 0,
+    "hour": 14,
+    "day_of_week": 5,
+    "month": 1
+}
+
