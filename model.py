@@ -52,7 +52,7 @@ data_description = data.describe()
 # Exploration Vizualization
 # --------------------------------------------------------------------
 variables_to_plot = ['temp', 'active_power']
-exploration_plot(data, variables_to_plot, period='M')
+# exploration_plot(data, variables_to_plot, period='M')
  
 # Modeling
 # --------------------------------------------------------------------
@@ -96,7 +96,48 @@ r2 = r2_score(y_test, y_pred)
 mae, mse, r2
     
 # Save model
-joblib.dump(model, 'model.pkl')
+joblib.dump(model, 'regression_model.pkl')
 joblib.dump(scaler, 'scaler.pkl')
 
+# Prophet model
+import logging
+from prophet import Prophet
 
+# Configure logging
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
+
+logger.info("Preparing data for Prophet...")
+# Prepare the data for Prophet
+data.rename(columns={'date': 'ds', 'active_power': 'y'}, inplace=True)
+
+# Initialize the model
+model = Prophet()
+model.add_regressor('current')
+model.add_regressor('voltage')
+model.add_regressor('reactive_power')
+model.add_regressor('apparent_power')
+model.add_regressor('power_factor')
+model.add_regressor('temp')
+model.add_regressor('feels_like')
+model.add_regressor('temp_min')
+model.add_regressor('temp_max')
+model.add_regressor('pressure')
+model.add_regressor('humidity')
+model.add_regressor('speed')
+model.add_regressor('deg')
+model.add_regressor('hour')
+model.add_regressor('day_of_week')
+model.add_regressor('month')
+
+logger.info("Fitting the model...")
+
+# Fit the model
+data_subset = data.sample(frac=0.1, random_state=42)  # Use 10% of the data
+# model.fit(data_subset)
+
+logger.info("Saving the model...")
+# Save the model
+# joblib.dump(model, 'prophet_model.pkl')
+
+logger.info("Model training completed.")

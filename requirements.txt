@@ -1,7 +1,10 @@
-fastapi==0.111.1
-joblib==1.4.2
-matplotlib==3.8.4
-numpy==2.0.1
-pandas==2.2.2
-pydantic==2.8.2
-scikit_learn==1.5.1
+matplotlib
+pydantic
+scikit_learn
+fastapi
+uvicorn
+pandas
+numpy==1.21.0
+joblib
+prophet==1.0.1
+
